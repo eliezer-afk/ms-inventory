@@ -1,0 +1,16 @@
+services:
+  ms-inventory:
+    image: ms-inventory:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+    networks:
+      - ms-network
+
+networks:
+  ms-network:
+    driver: bridge
