@@ -2,11 +2,11 @@ import { DataTypes, Model } from 'sequelize';
 import sequelize from '../config/db';
 
 class Stock extends Model {
-    public id!: number;
-    public producto_id!: number;
+    private id!: number;
+    private producto_id!: number;
     public fecha_transaccion!: Date;
     public cantidad!: number;
-    public entrada_salida!: number; // 1: entrada, 2: salida
+    private entrada_salida!: number; // 1: entrada, 2: salida
 }
 
 Stock.init({

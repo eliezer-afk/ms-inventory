@@ -11,12 +11,12 @@ app.use(express.json());
 
 app.use('/api/inventario', router);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 
 sequelize.sync().then(() => {
     app.listen(PORT, () => {
-        console.log(colors.bgCyan(`Catalog microservice running on port ${PORT}`));
+        console.log(colors.bgCyan(`Inventory microservice running on port ${PORT}`));
     });
 }).catch(err => {
-    console.error('Unable to connect to the database:', err);
+    console.error(colors.bgGreen('Unable to connect to the database:'), err);
 });
