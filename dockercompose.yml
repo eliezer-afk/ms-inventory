@@ -1,16 +1,29 @@
-services:
+version: "3.8"
+services:  
+  db:
+    image: postgres:latest
+    container_name: inventario-contenedor
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 4884
+      POSTGRES_DB: Microservicios
+    ports:
+      - "5432:5432"
+    networks:
+      - ms-network
   ms-inventory:
-    image: ms-inventory:latest
     build:
-      context: .
+      context: ./ms-inventory
       dockerfile: Dockerfile
+    image: ms-inventory:latest
     ports:
       - "8082:8080"
     environment:
-      - SPRING_PROFILES_ACTIVE=dev
+      - NODE_ENV=development
+    volumes:
+      - ./ms-inventory:/usr/src/app
+      - /usr/src/app/node_modules
     networks:
       - ms-network
 
-networks:
-  ms-network:
-    driver: bridge
+  
